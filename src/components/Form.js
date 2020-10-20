@@ -2,10 +2,7 @@ import React from "react";
 
 const Form = () => {
     return (
-        <div className="w-1/2 m-auto mt-4 bg-white overflow-hidden shadow rounded-lg">
-            <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
-                <h1>Nicole's Todolist</h1>
-            </div>
+
             <div className="px-4 py-5 sm:p-6">
                 <form>
                     <div>
@@ -19,19 +16,8 @@ const Form = () => {
                             </button>
                         </div>
                     </div>
-
-                    <label htmlFor="selectTodosCategory"
-                           className="block text-sm leading-5 font-medium text-gray-700">Select Category</label>
-
-                    <select id="selectTodosCategory"
-                            className="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
-                        <option>All</option>
-                        <option>Completed</option>
-                        <option>Uncompleted</option>
-                    </select>
                 </form>
             </div>
-        </div>
     );
 }
 
