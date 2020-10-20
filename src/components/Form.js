@@ -18,7 +18,7 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
             <div className="px-4 py-5 sm:p-6">
                 <form>
                     <div>
-                        <label for="addTodo" className="block text-sm font-medium leading-5 text-gray-700">Add Todo</label>
+                        <label for="addTodo" className="block text-sm font-medium leading-5 text-gray-700"></label>
                         <div className="mt-1 flex rounded-md shadow-sm">
                             <div className="relative flex-grow focus-within:z-10">
                                 <input value={inputText} onChange={inputTextHandler} type="text" id="addTodo" className="todo-input form-input block w-full rounded-none rounded-l-md pl-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" placeholder="Don't forget to smile today ..."/>
