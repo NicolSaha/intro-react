@@ -44,15 +44,14 @@ function App() {
 
     // USE EFFECT ONCE
     useEffect(() => {
-
-    }, []);
+        getLocalTodos();
+    }, [getLocalTodos]);
 
     // USE EFFECT
     useEffect(() => {
         filterHandler();
         saveLocalTodos();
-        getLocalTodos();
-    }, [filterHandler, saveLocalTodos, getLocalTodos]);
+    }, [todos, status, filterHandler, saveLocalTodos]);
 
     return (
     <div className="App">
