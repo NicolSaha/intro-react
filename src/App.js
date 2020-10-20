@@ -18,18 +18,13 @@ function App() {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
 
-    // FUNCTIONS AND EVENTS
-    const filterHandler = () => {
-        switch(status){
-            case 'completed':
-                setFilteredTodos(todos.filter(todo => todo.completed === true))
-                break;
-            case 'uncompleted':
-                setFilteredTodos(todos.filter(todo => todo.completed === false))
-                break;
-            default:
-                setFilteredTodos(todos);
-                break;
+    // GET FROM LOCALSTORAGE
+    const getLocalTodos = () => {
+        if(localStorage.getItem('todos') === null) {
+            localStorage.setItem('todos', JSON.stringify([]));
+        } else {
+            let todosLocal = JSON.parse(localStorage.getItem('todos'));
+            setTodos(todosLocal);
         }
     }
 
@@ -40,19 +35,22 @@ function App() {
 
     // USE EFFECT
     useEffect(() => {
+        const filterHandler = () => {
+            switch(status){
+                case 'completed':
+                    setFilteredTodos(todos.filter(todo => todo.completed === true))
+                    break;
+                case 'uncompleted':
+                    setFilteredTodos(todos.filter(todo => todo.completed === false))
+                    break;
+                default:
+                    setFilteredTodos(todos);
+                    break;
+            }
+        };
         filterHandler();
         saveLocalTodos();
-    }, [todos, status, filterHandler, saveLocalTodos]);
-
-    // GET FROM LOCALSTORAGE
-    const getLocalTodos = () => {
-        if(localStorage.getItem('todos') === null) {
-            localStorage.setItem('todos', JSON.stringify([]));
-        } else {
-            let todosLocal = JSON.parse(localStorage.getItem('todos'));
-            setTodos(todosLocal);
-        }
-    }
+    }, [todos, status, saveLocalTodos]);
 
     return (
     <div className="App">
