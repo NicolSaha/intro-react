@@ -13,44 +13,46 @@ function App() {
     const [status, setStatus] = useState('all');
     const [filteredTodos, setFilteredTodos] = useState([]);
 
+    const filterHandler = React.useCallback(() => {
+        switch(status){
+            case 'completed':
+                setFilteredTodos(todos.filter(todo => todo.completed === true))
+                break;
+            case 'uncompleted':
+                setFilteredTodos(todos.filter(todo => todo.completed === false))
+                break;
+            default:
+                setFilteredTodos(todos);
+                break;
+        }
+    }, [todos, status]);
+
     // SAVE TO LOCALSTORAGE
     const saveLocalTodos = React.useCallback(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
 
     // GET FROM LOCALSTORAGE
-    const getLocalTodos = () => {
+    const getLocalTodos = React.useCallback(() => {
         if(localStorage.getItem('todos') === null) {
             localStorage.setItem('todos', JSON.stringify([]));
         } else {
             let todosLocal = JSON.parse(localStorage.getItem('todos'));
             setTodos(todosLocal);
         }
-    }
+    }, []);
 
     // USE EFFECT ONCE
     useEffect(() => {
-        getLocalTodos();
+
     }, []);
 
     // USE EFFECT
     useEffect(() => {
-        const filterHandler = () => {
-            switch(status){
-                case 'completed':
-                    setFilteredTodos(todos.filter(todo => todo.completed === true))
-                    break;
-                case 'uncompleted':
-                    setFilteredTodos(todos.filter(todo => todo.completed === false))
-                    break;
-                default:
-                    setFilteredTodos(todos);
-                    break;
-            }
-        };
         filterHandler();
         saveLocalTodos();
-    }, [todos, status, saveLocalTodos]);
+        getLocalTodos();
+    }, [filterHandler, saveLocalTodos, getLocalTodos]);
 
     return (
     <div className="App">
