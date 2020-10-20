@@ -56,7 +56,7 @@ function App() {
 
     return (
     <div className="App">
-        <div className="w-1/2 m-auto my-10 bg-white overflow-hidden shadow-lg rounded-lg bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-500">
+        <div className="w-1/2 m-auto my-10 overflow-hidden shadow-lg rounded-lg bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-500">
             <Header/>
         <Form
             setStatus={setStatus}
